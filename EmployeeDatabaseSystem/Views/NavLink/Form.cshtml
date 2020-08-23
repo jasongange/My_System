@@ -1,0 +1,71 @@
+﻿<div ng-controller="AddOrUpdateNavlinkController">
+    @Html.Partial("_NavLinkPartial")
+    <div style="padding-top:80px; padding-left:250px">
+        <h2 >
+            <span class="" ng-hide="isUpdate">Add Navlink</span>
+        </h2>
+        <h2>
+            <span class="" ng-hide="!isUpdate">Edit Navlink</span>
+        </h2>
+    </div>
+    <hr>
+    <div ng-form="appUserForm" class="form">
+        @Html.Hidden("NavLinkId")
+        <div class="container">
+            <br><br>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-1">
+                    Name:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="Name" class="form-control" ng-model="navLink.Name" required />
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-1">
+                    Controller:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="LastName" class="form-control" ng-model="navLink.Controller" required />
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-1">
+                    Icon Class:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="Username" class="form-control" ng-model="navLink.IconClass" required />
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-1">
+                    Action:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="Username" class="form-control" ng-model="navLink.Action" required />
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-8">
+                    <button type="button" class="btn btn-success" ng-click="saveChanges();"> Save </button>
+                    <button type="button" class="btn btn-secondary" ng-click="cancel();"> Cancel </button>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

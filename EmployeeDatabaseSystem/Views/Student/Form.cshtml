@@ -1,0 +1,93 @@
+﻿<div ng-controller="AddOrUpdateStudentController">
+    @Html.Partial("_NavLinkPartial")
+    <div style="padding-top:80px; padding-left:250px">
+        <h2>
+            <span class="" ng-hide="isUpdate">Add Student</span>
+        </h2>
+        <h2>
+            <span class="" ng-hide="!isUpdate">Edit Student</span>
+        </h2>
+    </div>
+    <hr>
+    <div ng-form="studentForm" class="form">
+        @Html.Hidden("NavLinkId")
+        <div class="container">
+            <br><br>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class=""> Student No :</label>
+                    <input type="text" name="Name" class="form-control" ng-model="student.StudentNo" required />
+                </div>
+                <div class="col-md-3">
+                    <label class=""> First Name :</label>
+                    <input type="text" name="Name" class="form-control" ng-model="student.FirstName" required />
+                </div>
+                <div class="col-md-3">
+                    <label class="">   Middle Name :</label>
+                    <input type="text" name="Name" class="form-control" ng-model="student.MiddleName" required />
+                </div>
+                <div class="col-md-3">
+                    <label class="">  Last Name :</label>
+                    <input type="text" name="Name" class="form-control" ng-model="student.LastName" required />
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class=""> Contact Number :</label>
+                    <input type="number" name="Name" class="form-control" ng-model="student.ContactNumber" required />
+                </div>
+                <div class="col-md-3">
+                    <label class=""> Gender :</label>
+                    <select name="Name" class="form-control" ng-model="student.GenderId"></select>
+                </div>
+                @*<div class="col-md-3">
+                    <label class="">  Year Level :</label>
+                    <input type="number" name="Name" class="form-control" ng-model="student.YearLevel" required />
+                </div>*@
+                <div class="col-md-3">
+                    <label class=""> Birthdate : </label>
+                    <input type="text" name="Name" class="form-control" ng-model="student.Birthday" />
+                </div>
+                <div class="col-md-3" style="margin-top:35px">
+                    <div class="custom-control custom-checkbox mr-md-2">
+                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                        <label class="custom-control-label" for="customControlAutosizing">Tag as Paid</label>
+                    </div>
+                    @*<div class="custom-control form-control-md custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1" ng-model="student.IsPaid">
+            <label class="custom-control-label" for="customCheck1" style="margin-top:42px">Tag as Paid</label>
+        </div>*@
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                @*<div class="col-md-3">
+                    <label class=""> School Attended History :</label>
+                    <input type="text" name="Name" class="form-control" ng-model="student.SchoolAttendedHistory" required />
+                </div>*@
+                <div class="col-md-3">
+                    <label class="">  Address :</label>
+                    <textarea name="Address" rows="2" cols="30" ng-model="student.Address" required> </textarea>
+                </div>
+                <div class="col-md-3">
+                    <label class=""> Remarks :</label>
+                    <textarea name="Address" rows="2" cols="30" ng-model="student.Remarks" required> </textarea>
+                </div>
+
+            </div>
+            <br>
+        </div>
+        <hr>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="button" class="btn btn-success" ng-click="saveChanges();"> Save </button>
+                    <button type="button" class="btn btn-secondary" ng-click="cancel();"> Cancel </button>
+                </div>
+            </div>
+            </div>
+            <br>
+        </div>
+    </div>

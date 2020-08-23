@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<br>
+<div ng-controller="IndexController">
+        <div class="container">
+            <form id="regForm" name="regForm" novalidate >
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        FirstName: <input type="text" name="FirstName" class="form-control" ng-model="employee.FirstName" required />
+                        <span style="color:red" ng-show="regForm.FirstName.$error.required && regForm.FirstName.$dirty"> Firstname is Required</span>
+                    </div>
+                    <div class="col-md-4">
+                        LastName: <input type="text" name="LastName" class="form-control" ng-model="employee.LastName" required />
+                        <span style="color:red" ng-show="regForm.LastName.$error.required && regForm.LastName.$dirty"> Lastname is required</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        Username: <input type="text" name="Username" class="form-control" ng-model="employee.Username" required />
+                        <span style="color:red" ng-show="regForm.Username.$error.required && regForm.Username.$dirty"> Username is required</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        Department: <select class="form-control" name="Department" ng-model="employee.Department">
+                            <option>MIS Department</option>
+                            <option>Accounting Department</option>
+                            <option>Admin Department</option>
+                            <option>Marketing Department</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        Gender: <select class="form-control" name="Gender" ng-model="employee.Gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+    
+                    <div class="col-md-4">
+                        Street: <input type="text" name="Street" class="form-control" ng-model="employee.Street" required />
+                        <span style="color:red" ng-show="regForm.Street.$error.required && regForm.Street.$dirty"> Street is required</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        Baranggay: <input type="text" name="Baranggay" class="form-control" ng-model="employee.Baranggay" required />
+                        <span style="color:red" ng-show="regForm.Baranggay.$error.required && regForm.Baranggay.$dirty && Submitted"> Baranggay is required</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        City: <input type="text" name="City" class="form-control" ng-model="employee.City" required />
+                        <span style="color:red" ng-show="regForm.City.$error.required && regForm.City.$dirty && Submitted"> City is required</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        Birthday: <input type="date" name="Birthday" class="form-control" ng-model="employee.Birthday" required />
+                        <span style="color:red" ng-show="regForm.Birthday.$error.required && regForm.Birthday.$dirty && Submitted"> Birthday is required</span>
+                    </div>
+                    <br><br>
+                </div>
+                <button type="button" class="btn btn-success" ng-click="addEmployee();"> Submit </button>
+                <button type="button" class="btn btn-secondary" ng-click="updateEmployee();"> Update </button>
+            </form>
+            <br>
+            <div class="alert alert-success" ng-show="messagebool">
+                <strong>{{msg}}</strong>
+            </div>
+            <br>
+            <div class="container">
+                <h2>Employee Data</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>FirstName</th>
+                        <th>Lastname</th>
+                        <th>Username</th>
+                        <th>Department</th>
+                        <th>Gender</th>
+                        <th>Street</th>
+                        <th>Baranggay</th>
+                        <th>City</th>
+                        <th></th>
+                    </tr>
+                    <tr ng-repeat="employee in employees">
+                        <td>{{employee.EmployeeId}}</td>
+                        <td>{{employee.FirstName}}</td>
+                        <td>{{employee.LastName}}</td>
+                        <td>{{employee.Username}}</td>
+                        <td>{{employee.Department}}</td>
+                        <td>{{employee.Gender}}</td>
+                        <td>{{employee.Street}}</td>
+                        <td>{{employee.Baranggay}}</td>
+                        <td>{{employee.City}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" ng-click="getEmployeeRow(employee);"> Edit </button>
+                            <button type="button" class="btn btn-danger" ng-click="deleteEmployee(employee);"> Delete </button>
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal1" ng-click="getEmployeeTaskRow(employee);"> AddTask </button>
+                        </td>
+                    </tr>
+                </table>
+                <div id="myModal1" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Employee TaskList</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" id="taskForm">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">Task Name:</label>
+                                        <input type="text" class="form-control" id="recipient-name" ng-model="employeeT.EmployeeTaskName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="control-label">Task Details:</label>
+                                        <textarea class="form-control" id="message-text" ng-model="employeeT.EmployeeTaskDetails"></textarea>
+                                        <input type="hidden" ng-model="employee.EmployeeId">
+                                    </div>
+                                    <div class="alert alert-success alert-dismissible" ng-show="messagebool">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>{{msg}}</strong>    
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" ng-click="addEmployeeTask(employeeT);"> Submit </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <h2>Employee Task</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>FullName</th>
+                        <th>EmployeeTaskName</th>
+                        <th>EmployeeTaskDetails</th>
+                        <th></th>
+                    </tr>
+                    <tr ng-repeat="employeeT in employeeTask">
+                        <td>{{employeeT.EmployeeTaskId}}</td>
+                        <td>{{employeeT.EmployeeName}}</td>
+                        <td>{{employeeT.EmployeeTaskName}}</td>
+                        <td>{{employeeT.EmployeeTaskDetails}}</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal2" ng-click="getTaskRow(employeeT);"> UpdateTask </button>
+                        </td>
+                    </tr>
+                </table>
+                <div id="myModal2" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Employee Tasklist</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" id="taskForm">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">Task Name:</label>
+                                        <input type="text" class="form-control" id="recipient-name" ng-model="employeeT.EmployeeTaskName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="control-label">Task Details:</label>
+                                        <textarea class="form-control" id="message-text" ng-model="employeeT.EmployeeTaskDetails"></textarea>
+                                        <input type="hidden" ng-model="employeeT.EmployeeTaskId">
+                                    </div>
+                                    <div class="alert alert-info alert-dismissible" ng-show="messagebool">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>{{msg}}</strong>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" ng-click="updateEmployeeTask(employeeT);">Update</button>
+                                <button type="button" class="btn btn-danger" ng-click="deleteEmployeeTask(employeeT);"> Delete </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>

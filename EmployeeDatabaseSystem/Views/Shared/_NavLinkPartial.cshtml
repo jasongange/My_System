@@ -1,0 +1,73 @@
+﻿@*<ul class="navlink" ng-repeat="item in navLinks">
+        <li class="liNavlink"><a href="" class="aNavlink" ng-click="IndexView(item.Id)">{{item.IconClass}} {{item.Name}}</a></li>
+    </ul>*@
+<div class="sidebar">
+    <ul class="navlink" ng-repeat="item in navLinks">
+        <li class="liNavlink">
+            <a href="" class="aNavlink" ng-click="IndexView(item.Id)">
+                <i class='{{item.IconClass}}'></i> {{item.Name}}
+            </a>
+        </li>
+    </ul>
+</div>
+<style>
+        body {
+            margin: auto;
+            font-family: "Lato", sans-serif;
+            /*position: relative;*/
+        }
+
+      .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      background-color: #343a40;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+      padding-top:56px;
+    }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+            .sidebar a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .sidebar a:hover:not(.active) {
+                background-color: Highlight;
+                color: white;
+            }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 100%;
+        }
+
+        .navlink {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #555;
+        }
+
+        .liNavlink .aNavlink {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+            .liNavlink .aNavlink:hover {
+                background-color: #343a40;
+                color: blue;
+            }
+</style>

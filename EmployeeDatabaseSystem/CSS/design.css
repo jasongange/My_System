@@ -1,0 +1,17 @@
+﻿/*body {
+    background-color: whitesmoke;
+}
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  text-align: center;
+}*/
+
+.custom-control-label::before,
+.custom-control-label::after {
+  /*  top: .8rem;*/
+    width: 2.25rem;
+    height: 2.25rem;
+  /*  margin-top: 10px;*/
+}

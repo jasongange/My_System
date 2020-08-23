@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My System</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN CSS -->
+    @Html.Partial("_Styles")
+    @RenderSection("pagestyles", required: false)
+    @*<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>*@
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/CSS/design.css" rel="stylesheet" />
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark NavPosition">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("My System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <ul class="navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("LogOff", "Account")"> <i class="icon-user"></i> Log Out</a>
+                        </div>
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    @RenderBody()
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>*@
+    <script src="~/Scripts/angular.js"></script>
+
+    <script src="~/App/MainApp.js"></script>
+
+    <script src="~/App/Services/crud.service.js"></script>
+    <script src="~/App/Services/custom.demo.service.js"></script>
+    <script src="~/App/Services/CommonService.js"></script>
+    <script src="~/App/Services/custom.service.js"></script>
+    <script src="~/App/Services/task.service.js"></script>
+
+    <script src="~/App/Services/AppUser/AppUserService.js"></script>
+    <script src="~/App/Services/NavLink/NavLinkService.js"></script>
+    <script src="~/App/Services/Student/StudentService.js"></script>
+
+
+    <script src="~/App/MainAppController.js"></script>
+
+    <script src="~/App/Controller/indexController.js"></script>
+    <script src="~/App/Controller/HomeController.js"></script>
+    @*------AppUser------*@
+    <script src="~/App/Controller/AppUser/AppUserController.js"></script>
+    <script src="~/App/Controller/AppUser/AddOrUpdateAppUserController.js"></script>
+    @*------Navlink------*@
+    <script src="~/App/Controller/NavLink/AddOrUpdateNavlinkController.js"></script>
+    <script src="~/App/Controller/NavLink/NavLinkController.js"></script>
+    @*------Student------*@
+    <script src="~/App/Controller/Student/StudentController.js"></script>
+    <script src="~/App/Controller/Student/AddOrUpdateStudentController.js"></script>
+
+    @Html.Partial("_Scripts")
+</body>
+</html>
+<style>
+    /* Fixes dropdown menus placed on the right side */
+    .ml-auto {
+      left: auto;
+      right: 0px;
+    }
+    .NavPosition{
+     position: fixed;
+     width:100%;
+     margin-bottom:100px;
+     z-index:300;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        margin: auto;
+        padding: 0;
+    }
+    </style>
